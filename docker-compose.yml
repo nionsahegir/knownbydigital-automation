@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  knownbydigital-automation:
+    build: .
+    container_name: kbd_social_automation
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./generated_media:/app/generated_media
+      - ./theme_state.json:/app/theme_state.json
+      - ./content_history.json:/app/content_history.json
+      - ./daily_social_pack_cache.json:/app/daily_social_pack_cache.json

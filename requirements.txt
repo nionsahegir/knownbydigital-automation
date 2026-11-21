@@ -1,0 +1,9 @@
+# Core dependencies for Known By Digital Social Automation
+google-genai>=1.0.0
+requests>=2.31.0
+python-dotenv>=1.0.1
+Pillow>=10.3.0
+schedule>=1.2.1
+playwright>=1.49.0
+edge-tts>=6.1.12
+imageio-ffmpeg>=0.6.0

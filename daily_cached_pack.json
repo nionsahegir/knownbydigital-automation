@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-15",
+  "pack": {
+    "pillar_used": "AI Automation & Autonomous Intake Engines",
+    "story": {
+      "tag": "TODAY'S GROWTH POLL",
+      "headline": "Your leads: Qualified or wasted?",
+      "poll_opt_a": "Manual vetting, slow follow-up",
+      "poll_opt_b": "AI-driven, instant qualification",
+      "action_sticker": "TAP TO WATCH NEW REEL ➔"
+    },
+    "reel": {
+      "topic": "AI-Powered 24/7 Lead Qualification for Local Services",
+      "hook_3s": "Stop manual lead vetting.",
+      "voiceover_script": "High-ticket local services demand instant action. Deploy autonomous AI agents that qualify leads in under 4 seconds. 24/7, zero human effort. Sync directly to your CRM. Scale without hiring.",
+      "b_roll_visuals": "Canva-style kinetic tech visuals: Flowing data, AI brain graphic, CRM integration icons, client success metrics, digital clock showing 24/7, fast-moving lead funnel.",
+      "caption": "Your local service business can't afford slow leads. Our AI agents qualify prospects instantly, around the clock. Get ready for autonomous growth.",
+      "cta_trigger_word": "SYSTEM",
+      "hashtags": [
+        "#AIAutomation",
+        "#LeadGen",
+        "#LocalBizAI",
+        "#KnownByDigital"
+      ]
+    },
+    "single_post": {
+      "headline": "Your Website Isn't A Brochure. It's Your Top Sales Agent.",
+      "image_card_title": "Convert or Die.",
+      "image_card_subtitle": "Your digital storefront must close deals.",
+      "caption": "Many high-ticket local service businesses treat their website as a static digital brochure, a mere presence. This is a critical miscalculation. In 2026, your online presence isn't just about being found; it's about actively converting qualified prospects into consultations and clients. If your site isn't engineered for high-performance conversion, you're leaving revenue on the table.\n•  **Frictionless Pathways:** Does your site guide visitors through an optimized journey, or does it create dead ends?\n•  **Authority & Trust:** Is your value proposition immediately clear and backed by social proof?\n•  **Mobile-First Conversion:** Is the experience flawless on every device, especially for on-the-go prospects?\nInvest in a digital storefront that works as hard as your best sales professional. A Free 1-on-1 Growth Architecture Audit can pinpoint exactly where your website is underperforming and how our Website Design/Development expertise can transform it into a revenue-generating asset.",
+      "threads_version": "Your website isn't a digital brochure. It's your highest-performing sales agent. If it's not engineered for conversion, you're bleeding revenue. We build digital storefronts that close deals. Comment 'AUDIT' for a free 1-on-1 Growth Architecture Audit.",
+      "cta_trigger_word": "AUDIT",
+      "hashtags": [
+        "#WebDesign",
+        "#CRO",
+        "#LocalServiceMarketing",
+        "#KnownByDigital"
+      ]
+    },
+    "carousel": {
+      "topic": "AI-Powered Lead Management Playbook for High-Ticket Local Services",
+      "slides": [
+        {
+          "slide_number": 1,
+          "type": "cover",
+          "headline": "The High-Ticket Lead Automation Playbook",
+          "subheadline": "How Local Services Scale Without Hiring More (Swipe ->)"
+        },
+        {
+          "slide_number": 2,
+          "type": "problem",
+          "headline": "The Manual Lead Drain",
+          "points": [
+            "Slow response times lose 70% of qualified leads.",
+            "Teams spend hours on manual qualification & follow-up.",
+            "Inconsistent outreach damages pipeline velocity."
+          ]
+        },
+        {
+          "slide_number": 3,
+          "type": "solution_framework",
+          "headline": "The 3-Step Autonomous Intake Model",
+          "points": [
+            "Step 1: Custom AI Agent Development for 24/7 qualification.",
+            "Step 2: Autonomous Lead Intake Engines for instant capture & routing.",
+            "Step 3: CRM Workflow Automation for seamless follow-up & nurture."
+          ]
+        },
+        {
+          "slide_number": 4,
+          "type": "case_study_metric",
+          "headline": "Measurable Impact",
+          "points": [
+            "+42% Pipeline Speed (Leads to Consultation)",
+            "-60% Manual Chasing & Admin Time",
+            "+25% Qualified Lead Volume"
+          ]
+        },
+        {
+          "slide_number": 5,
+          "type": "cta",
+          "headline": "Make Your Brand AI-Ready",
+          "subheadline": "Comment 'SYSTEM' below or DM @knownbydigital to claim your custom roadmap."
+        }
+      ],
+      "caption": "Stop letting valuable leads slip through the cracks. Swipe to discover our 3-step playbook for autonomous lead intake and CRM automation. Scale your high-ticket local service business, without the headcount.",
+      "cta_trigger_word": "SYSTEM",
+      "hashtags": [
+        "#CRMAutomation",
+        "#BusinessEfficiency",
+        "#LocalBusinessGrowth",
+        "#KnownByDigital"
+      ]
+    }
+  }
+}

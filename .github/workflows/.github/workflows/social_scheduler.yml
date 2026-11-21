@@ -1,0 +1,99 @@
+name: Known By Digital Social Publishing Engine
+
+on:
+  schedule:
+    # 1. Single Post (14:00 BST / 09:00 AM UK / 04:00 AM EST) -> 08:00 UTC
+    - cron: '0 8 * * *'
+    # 2. Faceless Reel (18:30 BST / 01:30 PM UK / 08:30 AM EST) -> 12:30 UTC
+    - cron: '30 12 * * *'
+    # 3. Interactive Story (21:30 BST / 04:30 PM UK / 11:30 AM EST) -> 15:30 UTC
+    - cron: '30 15 * * *'
+    # 4. Strategy Carousel (00:30 BST / 07:30 PM UK / 02:30 PM EST) -> 18:30 UTC
+    - cron: '30 18 * * *'
+    # 5. Daily Storage Purge (03:00 BST / 48h Retention) -> 21:00 UTC
+    - cron: '0 21 * * *'
+    # 6. Weekly Threads Token Refresh (Sunday 04:00 BST) -> 22:00 UTC Saturday
+    - cron: '0 22 * * 0'
+
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Select which job to execute immediately'
+        required: true
+        default: 'auto'
+        type: choice
+        options:
+          - auto
+          - single_post
+          - reel
+          - story
+          - carousel
+          - check_comments
+          - clean
+          - refresh_tokens
+
+jobs:
+  run-social-engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      META_PAGE_ACCESS_TOKEN: ${{ secrets.META_PAGE_ACCESS_TOKEN }}
+      FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+      META_APP_ID: ${{ secrets.META_APP_ID }}
+      META_APP_SECRET: ${{ secrets.META_APP_SECRET }}
+      THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+      THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+      THREADS_APP_ID: ${{ secrets.THREADS_APP_ID }}
+      THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+      RETENTION_HOURS: 48
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install System Dependencies (FFmpeg & Fonts)
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y ffmpeg fonts-inter fonts-liberation
+
+      - name: Install Python Requirements
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright Chromium with System Deps
+        run: |
+          playwright install chromium --with-deps
+
+      - name: Execute Social Job
+        run: |
+          JOB_PARAM="${{ inputs.job }}"
+          if [ -z "$JOB_PARAM" ]; then
+            JOB_PARAM="auto"
+          fi
+          python run_job.py --job "$JOB_PARAM" --schedule-cron "${{ github.event.schedule }}"
+
+      - name: Persist State Files (Git Commit & Push)
+        run: |
+          git config --global user.name "KBD Cloud Bot"
+          git config --global user.email "bot@knownbydigital.com"
+          git add theme_state.json content_history.json replied_comments.json daily_cached_pack.json 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: auto-persist social state & theme rotation [skip ci]"
+            git push
+          else
+            echo "No state changes to commit."
+          fi

@@ -1,0 +1,27 @@
+# Environment variables & local secrets
+.env
+.env.local
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+
+# Generated media & temp files
+generated_media/*
+!generated_media/.gitkeep
+*.mp4
+*.mp3
+*.jpg
+*.png
+*.zip
+
+# Keep critical template/asset images in assets
+!assets/**
+
+# Operating system files
+.DS_Store
+Thumbs.db

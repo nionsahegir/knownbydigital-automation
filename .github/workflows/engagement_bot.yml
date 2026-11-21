@@ -1,0 +1,55 @@
+name: Known By Digital Engagement & Comment Reply Bot
+
+on:
+  schedule:
+    # Runs every 30 minutes to check and reply to comments
+    - cron: '*/30 * * * *'
+
+  workflow_dispatch:
+
+jobs:
+  check-and-reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+
+    env:
+      GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+      META_PAGE_ACCESS_TOKEN: ${{ secrets.META_PAGE_ACCESS_TOKEN }}
+      FACEBOOK_PAGE_ID: ${{ secrets.FACEBOOK_PAGE_ID }}
+      INSTAGRAM_ACCOUNT_ID: ${{ secrets.INSTAGRAM_ACCOUNT_ID }}
+      THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+      THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests python-dotenv google-genai
+
+      - name: Run Multi-Channel Engagement Bot
+        run: |
+          python engagement_bot.py
+
+      - name: Persist Replied Comments Log
+        run: |
+          git config --global user.name "KBD Engagement Bot"
+          git config --global user.email "bot@knownbydigital.com"
+          git add replied_comments.json 2>/dev/null || true
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: update replied comments history [skip ci]"
+            git push
+          else
+            echo "No new comments replied to."
+          fi
